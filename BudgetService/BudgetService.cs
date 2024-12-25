@@ -26,12 +26,12 @@ public class BudgetService
    private decimal GetBudgetByDate(string date)
    {
       var budgets = _budgetRepo.GetAll();
-      var BudgetOfYearMonth = budgets.Single(x => string.Equals(x.YearMonth, date.Substring(0,6))).Amount;
+      var budgetOfYearMonth = budgets.Single(x => string.Equals(x.YearMonth, date.Substring(0,6))).Amount;
       var daysOfYearMonth = DateTime.DaysInMonth(
          int.Parse(date.Substring(0, 4)),
          int.Parse(date.Substring(4, 2)));
 
-      return BudgetOfYearMonth / daysOfYearMonth;
+      return budgetOfYearMonth / daysOfYearMonth;
 
    }
 

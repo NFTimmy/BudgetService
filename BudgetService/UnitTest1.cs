@@ -5,11 +5,13 @@ namespace BudgetService;
 public class Tests
 {
     private IBudgetRepo _budgetRepo;
+    private BudgetService _budgetService;
 
     [SetUp]
     public void Setup()
     {
          _budgetRepo = Substitute.For<IBudgetRepo>();
+         _budgetService = new BudgetService(_budgetRepo);
     }
 
     [Test]
@@ -24,10 +26,8 @@ public class Tests
         };
 
         _budgetRepo.GetAll().Returns(mockBudgets);
-        
-        var budgetService = new BudgetService(_budgetRepo);
-        var budget = budgetService.Query(start, end);
-        Assert.That(3100, Is.EqualTo(budget));
+
+        Assert.That(3100, Is.EqualTo(_budgetService.Query(start, end)));
     }
 
     [Test]
@@ -42,10 +42,8 @@ public class Tests
         };
 
         _budgetRepo.GetAll().Returns(mockBudgets);
-        
-        var budgetService = new BudgetService(_budgetRepo);
-        var budget = budgetService.Query(start, end);
-        Assert.That(30, Is.EqualTo(budget));
+
+        Assert.That(30, Is.EqualTo(_budgetService.Query(start, end)));
     }
 
     [Test]
@@ -61,10 +59,8 @@ public class Tests
         };
 
         _budgetRepo.GetAll().Returns(mockBudgets);
-        
-        var budgetService = new BudgetService(_budgetRepo);
-        var budget = budgetService.Query(start, end);
-        Assert.That(6100, Is.EqualTo(budget));
+
+        Assert.That(6100, Is.EqualTo(_budgetService.Query(start, end)));
     }
 
     [Test]
@@ -80,10 +76,8 @@ public class Tests
         };
 
         _budgetRepo.GetAll().Returns(mockBudgets);
-        
-        var budgetService = new BudgetService(_budgetRepo);
-        var budget = budgetService.Query(start, end);
-        Assert.That(300, Is.EqualTo(budget));
+
+        Assert.That(300, Is.EqualTo(_budgetService.Query(start, end)));
     }
 
     [Test]
@@ -98,9 +92,8 @@ public class Tests
         };
 
         _budgetRepo.GetAll().Returns(mockBudgets);
-        
-        var budgetService = new BudgetService(_budgetRepo);
-        var budget = budgetService.Query(start, end);
-        Assert.That(0, Is.EqualTo(budget));
+
+
+        Assert.That(0, Is.EqualTo(_budgetService.Query(start, end)));
     }
 }
