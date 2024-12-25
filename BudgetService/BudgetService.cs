@@ -27,7 +27,7 @@ public class BudgetService
    {
       var budgets = _budgetRepo.GetAll();
       var BudgetOfYearMonth = budgets.Single(x => string.Equals(x.YearMonth, date.Substring(0,6))).Amount;
-      int daysOfYearMonth = DateTime.DaysInMonth(
+      var daysOfYearMonth = DateTime.DaysInMonth(
          int.Parse(date.Substring(0, 4)),
          int.Parse(date.Substring(4, 2)));
 
